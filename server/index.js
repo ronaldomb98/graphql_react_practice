@@ -9,4 +9,4 @@ const server = new ApolloServer({typeDefs, resolvers})
 
 server.applyMiddleware({app});
 
-app.listen(3000, () => { console.log(`El servidor esta corriendo ${server.graphqlPath}`); })
+app.listen(4000, () => { console.log(`El servidor esta corriendo ${server.graphqlPath}`); })

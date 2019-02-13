@@ -9,7 +9,8 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
   config.vm.box_check_update = false
   config.vm.network "private_network", ip: "192.168.33.10"
-  config.vm.synced_folder "./", "/project", mount_options: ["dmode=775,fmode=777"]
+  config.vm.synced_folder "./server", "/server", mount_options: ["dmode=775,fmode=777"]
+  config.vm.synced_folder "./client", "/client", mount_options: ["dmode=775,fmode=777"]
   config.vm.provider "virtualbox" do |vb|
     vb.gui = false
     vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
