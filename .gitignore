@@ -1,5 +1,6 @@
-node_modules
+server/node_modules
 package-lock.json
 setup.retry
 ubuntu-bionic-18.04-cloudimg-console.log
 .vagrant
+.idea
