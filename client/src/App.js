@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { ApolloProvider} from 'react-apollo';
 import ApolloClient from 'apollo-boost';
 import './App.css';
+
+// Import components
+
+import Header from "./components/Header";
+import Clientes from "./components/Clientes";
+
 const client = new ApolloClient({
   uri: "http://react-app.test:4000/graphql",
   onError: ({networkError, graphQLErrors}) => {
@@ -17,7 +23,10 @@ class App extends Component {
     return (
       <div className="App">
         <ApolloProvider client={client}>
-          <h1>Hola</h1>
+          <Header/>
+          <div className="container">
+            <Clientes/>
+          </div>
         </ApolloProvider>
       </div>
     );
