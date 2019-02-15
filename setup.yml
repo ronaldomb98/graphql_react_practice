@@ -79,3 +79,9 @@
       systemd:
         name: mongod
         state: started
+    - name: Install client dependencies
+      npm:
+        path: /client
+    - name: Install Server dependencies
+      npm:
+        path: /server

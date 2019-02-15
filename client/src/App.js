@@ -14,7 +14,7 @@ import EditarCliente from './components/EditarCliente';
 import NuevoCliente from './components/NuevoCliente';
 
 const client = new ApolloClient({
-  uri: "http://react-app.test:4000/graphql",
+  uri: "http://192.168.33.10:4000/graphql",
   onError: ({networkError, graphQLErrors}) => {
     console.log('graphQLErrors',graphQLErrors);
     console.log('networkError',networkError);
