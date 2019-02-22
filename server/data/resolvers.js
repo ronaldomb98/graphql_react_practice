@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import { Clientes } from './db';
+import { Clientes, Productos } from './db';
+import { rejects } from 'assert';
 
 export const resolvers = {
 	Query: {
@@ -22,6 +23,17 @@ export const resolvers = {
 					else resolve(count)
 				})
 			})
+		},
+		obtenerProductos: (root, {limite, offset}) => {
+			return Productos.find({}).limit(limite).skip(offset)
+		},
+		obtenerProducto: (root, {id}) => {
+			return new Promise((resolve, object) => {
+				Productos.findById(id,(error, producto) => {
+					if (error) rejects(error)
+					else resolve(producto)
+				});
+			});
 		}
 	},
 	Mutation: {
@@ -60,6 +72,38 @@ export const resolvers = {
                     else resolve("Se eliminó correctamente")
                 })
             })
-        }
+		},
+		nuevoProducto: (root, {input}) => {
+			const nuevoProducto = new Productos({
+				nombre: input.nombre,
+				precio: input.precio,
+				stock: input.stock
+			});
+
+			nuevoProducto.id = nuevoProducto._id;
+
+			return new Promise((resolve, object) => {
+				nuevoProducto.save(error => {
+					if (error) rejects(error)
+					else resolve(nuevoProducto)
+				})
+			});
+		},
+		actualizarProducto: (root, {input}) => {
+			return new Promise((resolve, object) => {
+				Productos.findOneAndUpdate({_id: input.id}, input, {new: true}, (error, producto) => {
+					if (error) rejects(error)
+					else resolve(producto)
+				});
+			});
+		},
+		eliminarProducto: (root, {id}) => {
+			return new Promise((resolve, object) => {
+				Productos.findOneAndDelete({_id: id}, error => {
+					if (error) rejects(error)
+					else resolve('Se eliminó correctamente')
+				})
+			});
+		}
 	}
 };
