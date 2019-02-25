@@ -53,7 +53,7 @@ class NuevoCliente extends Component {
                 <div className="row justify-content-center">
                     <Mutation 
                         mutation={NUEVO_CLIENTE}
-                        onCompleted={ () =>  this.props.history.push('/')}
+                        onCompleted={ () =>  this.props.history.push('/clientes')}
                     >
                     { crearCliente => 
                         <form 
